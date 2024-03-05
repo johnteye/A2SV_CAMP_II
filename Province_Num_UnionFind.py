@@ -11,7 +11,9 @@ class UnionFind:
         if x == self.root[x]:
             return x
 
-        return self.find(self.root[x])
+        self.root[x] =  self.find(self.root[x])
+        return self.root[x]
+    
     
 
     def union(self, u, v):

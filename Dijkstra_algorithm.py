@@ -18,7 +18,8 @@ def bfs(src, dest):
             visited.add(curr[1])
 
             for neighbour in graph[curr[1]]:
-                heapq.heappush(heap, (curr[0] + neighbour[1], neighbour[0]))
+                if neighbour[0] not in visited:
+                    heapq.heappush(heap, (curr[0] + neighbour[1], neighbour[0]))
 
 
 

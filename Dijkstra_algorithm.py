@@ -7,19 +7,18 @@ visited = set()
 
 def bfs(src, dest):
     heapq.heappush(heap, (0, src))
+    visited.add(src)
 
     while heap:
         curr = heapq.heappop(heap)
-        # print(curr)
+        visited.add(curr[1])
+        
         if curr[1] == dest:
             return curr[0]
-
-        if curr[1] not in visited:
-            visited.add(curr[1])
-
-            for neighbour in graph[curr[1]]:
-                if neighbour[0] not in visited:
-                    heapq.heappush(heap, (curr[0] + neighbour[1], neighbour[0]))
+            
+        for neighbour in graph[curr[1]]:
+            if neighbour[0] not in visited:
+                heapq.heappush(heap, (curr[0] + neighbour[1], neighbour[0]))
 
 
 

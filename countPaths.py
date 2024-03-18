@@ -26,18 +26,15 @@ class Solution:
                 if neigh not in visited:
                     heapq.heappush(heap, (cost+time, neigh))
         # print(min_dist)
-    
+        @cache
         def dp(node, c):
-            if node in memo:
-                return memo[node]
 
             if c == min_dist[-1]:
                 return 1
             cum_sum = 0
             for time, neigh in graph[node]:
                 if time + c + min_dist[neigh] == min_dist[-1]:
-                    cum_sum += dp(neigh, c + time)%(10**9+7)
-            memo[node] = cum_sum
-            return memo[node]
-        memo ={}
+                    cum_sum += dp(neigh, c + time)
+            
+            return cum_sum
         return dp(n-1, 0) %(10**9 + 7)
